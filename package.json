@@ -1,0 +1,22 @@
+{
+  "name": "red-live",
+  "version": "1.0.0",
+  "description": "Redux store events subscriber",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/codeshake/red-live.git"
+  },
+  "keywords": [
+    "redux"
+  ],
+  "author": "Codeshake",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codeshake/red-live/issues"
+  },
+  "homepage": "https://github.com/codeshake/red-live#readme"
+}

@@ -3,20 +3,24 @@
   "version": "1.0.0",
   "description": "Redux store events subscriber",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/codeshake/red-live.git"
+    "url": "https://github.com/codeshake/red-live.git"
   },
   "keywords": [
     "redux"
   ],
   "author": "Codeshake",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/codeshake/red-live/issues"
   },
-  "homepage": "https://github.com/codeshake/red-live#readme"
+  "homepage": "https://github.com/codeshake/red-live#readme",
+  "peerDependencies": {
+    "redux": "^4.1.0"
+  },
+  "dependencies": {
+    "redux": "^4.1.0"
+  }
 }

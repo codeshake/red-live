@@ -5,7 +5,7 @@ Simple and lightweight [middleware](https://redux.js.org/advanced/middleware) fo
 ## Installation:
 
 ```bash
-npm i https://github.com/codeshake/red-live.git --save
+npm i red-live --save
 ```
 
 ## Usage:

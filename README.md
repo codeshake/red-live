@@ -2,6 +2,9 @@
 
 Simple and lightweight [middleware](https://redux.js.org/advanced/middleware) for binding to Redux actions.
 
+[![npm version](https://img.shields.io/npm/v/red-live.svg?style=for-the-badge&logo=appveyor)](https://www.npmjs.com/package/red-live)
+[![npm downloads](https://img.shields.io/npm/dm/red-live.svg?style=for-the-badge&logo=appveyor)](https://www.npmjs.com/package/red-live)
+
 ## Installation:
 
 ```bash

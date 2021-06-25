@@ -1,9 +1,9 @@
 {
   "name": "red-live",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Redux store events subscriber",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/codeshake/red-live.git"
@@ -20,7 +20,15 @@
   "peerDependencies": {
     "redux": "^4.1.0"
   },
-  "dependencies": {
-    "redux": "^4.1.0"
-  }
+  "devDependencies": {
+    "redux": "^4.1.0",
+    "typescript": "^4.3.4"
+  },
+  "scripts": {
+    "build": "tsc src/index.ts --declaration --alwaysStrict --lib es2015 --outDir dist",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "dist"
+  ]
 }

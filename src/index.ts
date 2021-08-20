@@ -28,7 +28,7 @@ export const redLiveSubAfter = (actionType: string | Array<string>, callback: Fu
     }
 }
 
-export const redLive: Middleware = () => next => action => {
+export const redLiveMiddleware: Middleware = () => next => action => {
     if (typeof redLiveCallbacksStoreBefore[action.type] !== 'undefined') {
         redLiveCallbacksStoreBefore[action.type].forEach(f => f(action))
     }

@@ -17,7 +17,9 @@ const bindFnOnType = (actionType: string, callback: Function, store: storeType) 
 
 export const redLiveSubBefore = (actionType: string | Array<string>, callback: Function) => {
     if (Array.isArray(actionType)) {
-        actionType.forEach(type => bindFnOnType(type, callback, redLiveCallbacksStoreBefore))
+        for (const type of actionType) {
+            bindFnOnType(type, callback, redLiveCallbacksStoreBefore)
+        }
     } else {
         bindFnOnType(actionType, callback, redLiveCallbacksStoreBefore)
     }
@@ -25,7 +27,9 @@ export const redLiveSubBefore = (actionType: string | Array<string>, callback: F
 
 export const redLiveSubAfter = (actionType: string | Array<string>, callback: Function) => {
     if (Array.isArray(actionType)) {
-        actionType.forEach(type => bindFnOnType(type, callback, redLiveCallbacksStoreAfter))
+        for (const type of actionType) {
+            bindFnOnType(type, callback, redLiveCallbacksStoreAfter)
+        }
     } else {
         bindFnOnType(actionType, callback, redLiveCallbacksStoreAfter)
     }

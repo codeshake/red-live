@@ -8,8 +8,10 @@ const redLiveCallbacksStoreBefore: IRedLiveCallbacksStore = {}
 const redLiveCallbacksStoreAfter: IRedLiveCallbacksStore = {}
 
 const bindFnOnType = (actionType: string, callback: Function, store: IRedLiveCallbacksStore) => {
-    if (typeof store[actionType] === 'undefined') store[actionType] = []
-    store[actionType].push(callback)
+    const actionStack = store[actionType]
+
+    if (!Array.isArray(actionStack)) store[actionType] = []
+    if (actionStack) actionStack.push(callback)
 }
 
 export const redLiveSubBefore = (actionType: string | Array<string>, callback: Function) => {
@@ -29,14 +31,21 @@ export const redLiveSubAfter = (actionType: string | Array<string>, callback: Fu
 }
 
 export const redLiveMiddleware: Middleware = () => next => action => {
-    if (typeof redLiveCallbacksStoreBefore[action.type] !== 'undefined') {
-        redLiveCallbacksStoreBefore[action.type].forEach(f => f(action))
+    const afterStack = redLiveCallbacksStoreAfter[action.type]
+    const beforeStack = redLiveCallbacksStoreBefore[action.type]
+
+    if (Array.isArray(beforeStack)) {
+        for (const f of beforeStack) {
+            f(action)
+        }
     }
 
     const result = next(action)
 
-    if (typeof redLiveCallbacksStoreAfter[action.type] !== 'undefined') {
-        redLiveCallbacksStoreAfter[action.type].forEach(f => f(action))
+    if (Array.isArray(afterStack)) {
+        for (const f of afterStack) {
+            f(action)
+        }
     }
 
     return result

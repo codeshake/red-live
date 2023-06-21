@@ -1,16 +1,17 @@
 import { Middleware } from 'redux'
 
-interface IRedLiveCallbacksStore {
-    [key: string]: Array<Function>
-}
+type storeType = Map<any, Array<Function>>
 
-const redLiveCallbacksStoreBefore: IRedLiveCallbacksStore = {}
-const redLiveCallbacksStoreAfter: IRedLiveCallbacksStore = {}
+const redLiveCallbacksStoreBefore = new Map<any, Array<Function>>()
+const redLiveCallbacksStoreAfter = new Map<any, Array<Function>>()
 
-const bindFnOnType = (actionType: string, callback: Function, store: IRedLiveCallbacksStore) => {
-    const actionStack = store[actionType]
+const bindFnOnType = (actionType: string, callback: Function, store: storeType) => {
+    if (!Array.isArray(store.get(actionType))) {
+        store.set(actionType, [])
+    }
 
-    if (!Array.isArray(actionStack)) store[actionType] = []
+    const actionStack = store.get(actionType)
+
     if (actionStack) actionStack.push(callback)
 }
 
@@ -31,10 +32,10 @@ export const redLiveSubAfter = (actionType: string | Array<string>, callback: Fu
 }
 
 export const redLiveMiddleware: Middleware = () => next => action => {
-    const afterStack = redLiveCallbacksStoreAfter[action.type]
-    const beforeStack = redLiveCallbacksStoreBefore[action.type]
+    const afterStack = redLiveCallbacksStoreAfter.get(action.type)
+    const beforeStack = redLiveCallbacksStoreBefore.get(action.type)
 
-    if (Array.isArray(beforeStack)) {
+    if (beforeStack) {
         for (const f of beforeStack) {
             f(action)
         }
@@ -42,7 +43,7 @@ export const redLiveMiddleware: Middleware = () => next => action => {
 
     const result = next(action)
 
-    if (Array.isArray(afterStack)) {
+    if (afterStack) {
         for (const f of afterStack) {
             f(action)
         }
